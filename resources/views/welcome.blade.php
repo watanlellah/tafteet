@@ -63,6 +63,9 @@
                 margin-bottom: 30px;
             }
         </style>
+        <div >
+            {{menu('main', 'my_menu')}}
+        </div>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -90,51 +93,34 @@
                     <div >
                         <table class="table">
                             <thead>
+
                             <tr>
                                 <th>Firstname</th>
                                 <th>Lastname</th>
                                 <th>Email</th>
                             </tr>
+                            @if($patients)
+                                @foreach($patients as $patient )
                             </thead>
+                            @if ($patient->created_at->diffInDays( Carbon\Carbon::now()) <= 1)
+
                             <tbody>
+
                             <tr>
-                                <td>Default</td>
-                                <td>Defaultson</td>
-                                <td>def@somemail.com</td>
+                                <td>{{$patient->patient_name}}</td>
+                                <td>{{$patient->created_at->diffForHumans()}}</td>
+                                <td>{{$patient->session_time}}</td>
                             </tr>
-                            <tr class="success">
-                                <td>Success</td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
-                            </tr>
-                            <tr class="danger">
-                                <td>Danger</td>
-                                <td>Moe</td>
-                                <td>mary@example.com</td>
-                            </tr>
-                            <tr class="info">
-                                <td>Info</td>
-                                <td>Dooley</td>
-                                <td>july@example.com</td>
-                            </tr>
-                            <tr class="warning">
-                                <td>Warning</td>
-                                <td>Refs</td>
-                                <td>bo@example.com</td>
-                            </tr>
-                            <tr class="active">
-                                <td>Active</td>
-                                <td>Activeson</td>
-                                <td>act@example.com</td>
-                            </tr>
+                            @else
+                            @endif
+                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                    <div >
-                   {{menu('main', 'my_menu')}}
-                </div>
+
             </div>
         </div>
     </body>

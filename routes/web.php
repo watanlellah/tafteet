@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-
+Route::get('/','WelcomeController@index');
 Route::group(['prefix' => 'login'], function () {
     Voyager::routes();
 });
